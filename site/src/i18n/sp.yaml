@@ -25,7 +25,11 @@ dashboard:
   updated: "Actualizado: "
   new: Nuevo
   saveas: Guardar como...
-  import: Importar desde...
+  import:
+    title: Importar desde...
+    alert:
+      title: TODO
+      content: TODO
   rename: Renombrar
   duplicate: Duplicar
   delete: Eliminar

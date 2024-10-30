@@ -34,7 +34,11 @@ import {
   EditableCancelTrigger,
   type EditableRootProps,
   type EditableRootEmits,
-  useForwardPropsEmits
+  useForwardPropsEmits,
+  EditableArea,
+  EditableInput,
+  EditablePreview,
+  EditableRoot,
 } from "radix-vue";
 
 const props = defineProps<EditableRootProps>();

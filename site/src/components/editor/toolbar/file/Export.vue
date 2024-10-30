@@ -1,4 +1,6 @@
 <template>
+
+  <!-- Button for exporting PDF -->
   <UiTooltipProvider :delay-duration="0">
     <UiTooltip>
       <UiTooltipTrigger as-child>
@@ -26,6 +28,7 @@
     </UiTooltip>
   </UiTooltipProvider>
 
+  <!-- Button for exporting MD -->
   <UiButton
     class="gap-x-1.5 w-full h-8 justify-start"
     variant="ghost"
@@ -35,14 +38,26 @@
     <span i-ri:markdown-fill text-base />
     {{ $t("toolbar.file.export_md") }}
   </UiButton>
+
+  <!-- Button for exporting JSON -->
+  <UiButton
+    class="gap-x-1.5 w-full h-8 justify-start"
+    variant="ghost"
+    size="sm"
+    @click="exportJson"
+  >
+    <span i-mdi:code-json text-base />
+    {{ $t("toolbar.file.export_json") }}
+  </UiButton>
+
 </template>
 
 <script lang="ts" setup>
 import { downloadFile } from "@ohmycv/utils";
+import { StorageService } from "~/utils";
 
 const { data } = useDataStore();
 const saveName = computed(() => data.resumeName.trim().replace(/\s+/g, "_"));
-
 // Export as PDF
 const exportPDF = () => {
   const title = document.title;
@@ -55,5 +70,11 @@ const exportPDF = () => {
 // Export as Markdown
 const exportMd = () => {
   downloadFile(`${saveName.value}.md`, data.markdown);
+};
+
+// Export as JSON
+const exportJson = async () => {
+  const storageService = new StorageService('localForage');
+  await storageService.exportToJSON(data.resumeId)
 };
 </script>
