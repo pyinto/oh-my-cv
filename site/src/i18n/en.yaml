@@ -24,8 +24,8 @@ dashboard:
   created: "Created: "
   updated: "Updated: "
   new: New
-  saveas: Save as...
-  import: Import from...
+  saveas: Export as JSON
+  import: Import as JSON
   rename: Rename
   duplicate: Duplicate
   delete: Delete
