@@ -29,7 +29,9 @@ dashboard:
     title: Import all from JSON
     alert:
       title: Warning!
-      content: When importing JSON with one or multiple CVs, they will replace your existing CVs with the same ID (resumeID). Only proceed if you have already exported the latest relevant versions of your resumes and you ok to loose them.
+      content: When importing JSON with one or multiple CVs, they will replace your existing CVs with the same ID (resumeID).
+        Only proceed if you have already exported the latest relevant versions of your resumes, and you ok to loose them.
+
   rename: Rename
   duplicate: Duplicate
   delete: Delete
