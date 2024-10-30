@@ -25,7 +25,11 @@ dashboard:
   updated: 更新于：
   new: 新建
   saveas: 另存为...
-  import: 从...导入
+  import:
+    title: 从...导入
+    alert:
+      title: TODO
+      content: TODO
   duplicate: 创建副本
   rename: 重命名
   delete: 删除
