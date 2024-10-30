@@ -144,11 +144,15 @@ export class StorageService {
     }
   }
   public convertTimestampToFilenameFormat(timestampStr: string): string {
-      // Convert the timestamp string directly to a Date object (assuming it's in milliseconds)
-      const timestamp = parseInt(timestampStr, 10); // Parse the string to an integer
+      // Convert the timestamp string directly to a Date object
+      const timestamp = parseInt(timestampStr, 10);
       const date = new Date(timestamp);
       // Format the date and time to '%YYYY-%MM-%DD %HH%MM'
       return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}_${date.getHours().toString().padStart(2, '0')}${date.getMinutes().toString().padStart(2, '0')}`;
+  }
+  public getFileName(updatedAt: string, resumeName: string): string {
+      const updatedAtReadable = this.convertTimestampToFilenameFormat(updatedAt);
+      return `${resumeName} -- ${updatedAtReadable}.json`;
   }
 
   public async exportToJSON(resumeId?: number | null) {
@@ -169,10 +173,10 @@ export class StorageService {
       const dbResponse = await this._db.queryById(resumeId);
       if (dbResponse.data !== null) {
         const resume = dbResponse.data
-        const updatedAtReadable = this.convertTimestampToFilenameFormat(resume.updated_at);
-        filename = `${resume.name} -- ${updatedAtReadable}.json`;
+        filename = this.getFileName(resume.updated_at, resume.name)
         data[resumeId.toString()] = resume;
       } else {
+        // TODO: Use toast to show error message
         console.error(`Could not fetch a Resume by id: ${resumeId}, error: ${dbResponse.error}`);
         return
       }
